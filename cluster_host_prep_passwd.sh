@@ -1,9 +1,9 @@
 #!/bin/bash
 
+# Run cluster commands in a password environment
+
  sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
  sudo yum -y install sshpass
-
-
 
 filename=./hosts.txt
 password=my_password
@@ -38,20 +38,4 @@ while read p; do
         -o StrictHostKeyChecking=no \
         -o UserKnownHostsFile=/dev/null \
         "echo $p > ./fqdn.txt"
-done < $filename
-
-# set hostname
-while read p; do
-    sshpass -p "$password" ssh -t ec2-user@$p \
-        -o StrictHostKeyChecking=no \
-        -o UserKnownHostsFile=/dev/null \
-        "sudo hostnamectl set-hostname `cat ./fqdn.txt`"
-done < $filename
-
-# restart cloudera-scm-agent
-while read p; do
-    sshpass -p "$password" ssh -t ec2-user@$p \
-        -o StrictHostKeyChecking=no \
-        -o UserKnownHostsFile=/dev/null \
-        "sudo service cloudera-scm-agent restart"
 done < $filename
