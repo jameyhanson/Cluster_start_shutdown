@@ -2,6 +2,9 @@
 
 # Cluster host startup in a password environment
 
+filename=./hosts.txt
+password=my_password
+
 # set hostname
 while read p; do
     sshpass -p "$password" ssh -t ec2-user@$p \
