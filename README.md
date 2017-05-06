@@ -3,8 +3,8 @@ Scripts to simplify CDH cluster startup and shutdown when running on PaaS
 
 These scripts are intended to simply preparing and starting CDH clusters that are hosted on AWS or other PaaS.  
 
-NOTE:  Cloudera Director automates preparing hosts (plus many, many other tasks) but it does not help with  
-restarting hosted clusters.
+NOTE:  Cloudera Director automates preparing hosts (plus many, many other tasks) but it does not help  
+with restarting hosted clusters.
 
 ## setup
 The scripts are intended to be run a CentOS/RHEL host, typically the CM server.  The scripts must be run by a user with  
